@@ -1,0 +1,58 @@
+    Finished release [optimized] target(s) in 0.04s
+     Running `target/release/qg_phenomenology_demo`
+================================================================
+ QG phenomenology: Lorentz-invariance-violation bounds from GRBs
+================================================================
+
+Planck energy  = 1.2209e19 GeV  (unreachable: ~10^15x the LHC's ~14 TeV)
+Planck length  = 1.6163e-35 m
+
+---- Step 1: cosmological LIV weighting kernel K_1(z) ----
+
+     z     K_1(z)
+ 0.100     0.1026
+ 0.300     0.3196
+ 0.500     0.5463
+ 0.903     1.0099
+ 1.500     1.6745
+ 2.000     2.1965
+
+---- Step 2: GRB 090510 -- naive single-photon-pair bound vs. published ----
+
+Vasileiou et al. 2013 (Phys. Rev. D 87, 122001), using dedicated multi-photon
+statistical techniques on the full LAT sample, report E_QG,1 > 7.6 * E_Planck.
+This crude estimator instead uses only the single ~31 GeV photon's arrival
+time (0.829s post-trigger) vs. a ~keV reference -- it should land in the same
+order of magnitude but BELOW 7.6, since it throws away most of the statistical
+power the paper's methods use.
+
+naive E_QG,1            = 1.6647e19 GeV
+naive E_QG,1 / E_Planck = 1.363   (published: 7.6)
+
+---- Step 3: what discreteness scale would this bound already exclude? ----
+
+ell / ell_Planck implied E_QG (GeV)  excluded?
+             1e0        1.2209e19        yes
+             1e1        1.2209e18        yes
+             1e3        1.2209e16        yes
+             1e6        1.2209e13        yes
+             1e9        1.2209e10        yes
+            1e12         1.2209e7        yes
+
+(Since naive E_QG(ell) = hbar*c/ell scales as 1/ell, the exclusion threshold is
+ell* = ell_Planck / 7.6 = 2.127e-36 m. Under this naive ansatz, GRB 090510 alone
+already excludes EVERY discreteness length coarser than roughly the Planck length
+itself -- there is essentially no room left between "continuum" and "excluded".
+Any discrete-spacetime model that wants a lattice spacing at or above the Planck
+length AND survives this bound needs an explicit suppression mechanism for LIV,
+not just "discreteness exists" -- exactly what serious QG programs with an
+emergent, not fundamental, discreteness build in.)
+
+================================================================
+ What this crate does NOT (yet) claim: a discreteness length FROM
+ spectral_dqg's own hypergraph. The hypergraph has no committed
+ physical edge length, so mapping graph combinatorics -> a length
+ in meters -> a testable E_QG would need an honest calibration this
+ crate doesn't currently have. This module is the machinery that
+ calibration would plug into, not a claim that it's been done.
+================================================================

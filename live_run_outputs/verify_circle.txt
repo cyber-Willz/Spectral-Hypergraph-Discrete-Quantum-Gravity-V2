@@ -1,0 +1,6 @@
+    Finished release [optimized] target(s) in 0.04s
+     Running `target/release/verify_circle`
+expected radius sqrt(d-1) = 1.732051
+n_nontrivial = 239, mean radius = 1.737356, max deviation = 1.267949
+fraction within 1% of expected radius: 0.9958
+min=1.732051 p10=1.732051 p50=1.732051 p90=1.732051 max=3.000000

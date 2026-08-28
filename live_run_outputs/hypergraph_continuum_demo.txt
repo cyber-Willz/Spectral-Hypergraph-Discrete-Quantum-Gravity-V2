@@ -1,0 +1,31 @@
+    Finished release [optimized] target(s) in 0.04s
+     Running `target/release/hypergraph_continuum_demo`
+================================================================
+ Hypergraph discrete-to-continuum limit: quantitative test
+ Target: S^2, exact continuum ratio lambda(l=2)/lambda(l=1) = 3
+================================================================
+
+epsilon-ball hyperedges, eps(N) = 2.5 * sqrt(ln N / N), sphere sample seed = 42
+
+     N    ratio_A_clique      ratio_B_zhou     err_A=|r-3|     err_B=|r-3|
+   100          3.111411          3.116220        0.111411        0.116220
+   200          3.143359          3.161391        0.143359        0.161391
+   400          2.889772          2.892248        0.110228        0.107752
+   800          2.989660          3.001696        0.010340        0.001696
+  1600          2.971945          2.976384        0.028055        0.023616
+  3200          2.935033          2.933787        0.064967        0.066213
+
+(err -> 0 as N grows is the actual convergence claim; the fit below
+quantifies the *rate*, not just the direction, of that convergence.)
+
+Scheme A (clique expansion):  err(N) ~ 0.7642 * N^-0.4104
+Scheme B (Zhou hypergraph):   err(N) ~ 1.1639 * N^-0.5247
+
+Caveats (stated, not buried): single seed per N (no seed-averaging /
+error bars on the rate estimate yet), a heuristic (not derived-
+optimal) constant in eps(N), unweighted hyperedges. All three are
+direct, tractable follow-ups -- none of them is required for the
+ratio-convergence phenomenon itself to be real, or for scheme A
+and scheme B to genuinely differ here (they do, unlike the fixed-
+size kNN construction -- see hypergraph_continuum_limit.rs's
+module doc comment for why that matters).

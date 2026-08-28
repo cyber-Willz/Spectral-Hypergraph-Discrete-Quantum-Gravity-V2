@@ -1,0 +1,14 @@
+    Finished release [optimized] target(s) in 0.04s
+     Running `target/release/certified_interval_flow`
+=== Step A: certified interval vs exact dense P(t), N=2000, d=4, t=1 ===
+dense diagonalization : 9.167043169s   exact P(t) = 831.1906
+point-estimate SLQ    : 275.063658ms   P(t) ~= 831.0991  (no guarantee it brackets exact)
+certified interval SLQ: 294.020281ms   [384.2038, 1277.9945]  (width 893.7908, 99% confidence)
+certificate contains exact dense answer: YES
+
+=== Step B: N=10,000, d=4, t=1, matrix-free certified estimate only ===
+graph build: 1.614529ms, N=10000, nnz(L)=40000
+certified interval (150 probes, 80 Lanczos steps): 6.583385895s
+P(t=1) in [3208.9272, 5101.9756]  (point estimate 4155.4514, width 1893.0484, 99% confidence)
+
+For comparison: dense diagonalization at N=2000 alone took 9.167043169s (O(N^3)); at N=10,000 it would be roughly 125x that cost, and O(N^2) memory (~0.8 GB just for the dense matrix). This run touched only sparse matvecs and produced a certificate, not just a number to trust by analogy.

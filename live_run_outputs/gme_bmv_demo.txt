@@ -1,0 +1,36 @@
+    Finished release [optimized] target(s) in 0.04s
+     Running `target/release/gme_bmv_demo`
+================================================================
+ GME/BMV: gravity-mediated entanglement phase calculation
+================================================================
+
+---- Step 1: convergence of the entangling cross-term to the ----
+---- standard small-dx literature formula, as dx/d -> 0      ----
+
+    dx (m)       cross term    -2*lo formula        ratio
+    1.0e-4     -3.653056e-2     -3.472658e-2     1.051948
+    3.0e-5     -3.139345e-3     -3.125392e-3     1.004464
+    1.0e-5     -3.474374e-4     -3.472658e-4     1.000494
+    3.0e-6     -3.125531e-5     -3.125392e-5     1.000044
+    1.0e-6     -3.472675e-6     -3.472658e-6     1.000005
+
+---- Step 2: cross-check against Bose et al. 2017 (PRL 119, 240401) ----
+
+Published (their SG free-fall step): m=1e-14 kg, d=450 micron,
+dx=250 micron, tau~2.5s give Delta phi_LR ~ -0.2, Delta phi_RL ~ +0.7
+(relative to the LL=RR baseline). This model has no Stern-Gerlach
+acceleration-phase contribution, so matching SIGN and ORDER OF
+MAGNITUDE is the honest bar, not exact reproduction.
+
+phi_LL = phi_RR = 0.351607  (exact equality by construction)
+Delta phi_LR = -0.125574   (published: -0.2)
+Delta phi_RL = 0.439508   (published: +0.7)
+
+================================================================
+ What this crate does NOT (yet) compute: the actual spin-
+ entanglement witness W (needs the full Stern-Gerlach
+ recombination-step formula), and decoherence timescales
+ (Casimir-Polder, blackbody, residual gas) that determine
+ whether the required coherence time is achievable. Both are
+ real next steps, left undone rather than approximated.
+================================================================

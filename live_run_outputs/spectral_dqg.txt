@@ -1,0 +1,99 @@
+    Finished release [optimized] target(s) in 0.04s
+     Running `target/release/spectral_dqg`
+================================================================
+ Discrete Quantum Gravity via Spectral Hypergraph Theory
+ Implementation of the pipeline: Hypergraph -> Laplacian ->
+ Ihara-Selberg zeta -> (honest) continuum-limit diagnostics
+================================================================
+
+Hypergraph: 8 vertices, 11 hyperedges -> clique-expanded to 13 weighted graph edges
+
+---- Step 1: Laplacian spectrum & spectral dimension flow ----
+
+Normalized Laplacian eigenvalues (ascending):
+0.0000, 0.2570, 0.7801, 1.1304, 1.1667, 1.2116, 1.6039, 1.8503
+
+         t         P(t)     d_s(t)
+    0.0340       7.7339      0.070
+    0.0579       7.5545      0.118
+    0.0985       7.2620      0.198
+    0.1675       6.7994      0.327
+    0.2850       6.1029      0.528
+    0.4849       5.1368      0.813
+    0.8249       3.9616      1.146
+    1.4034       2.7934      1.368
+    2.3876       1.9149      1.270
+    4.0618       1.4224      0.919
+    6.9102       1.1749      0.573
+   11.7560       1.0489      0.292
+
+(d_s(t) -> 0 at both ends is the expected finite-graph artifact: IR from
+finite component count as t->infinity, UV from the finite vertex-count
+lattice cutoff as t->0. A physically meaningful 'dimension' would show
+up as a plateau in between -- on a graph this small there isn't a clean
+one, which is itself the honest result for N=8.)
+
+---- Step 2: Ihara-Selberg zeta function ----
+
+Non-backtracking matrix B is 26x26 (26 directed arcs)
+
+       u        det(I-uB)     Bass formula      abs error
+   0.050         0.998673         0.998673       3.33e-16
+   0.100         0.988741         0.988741       1.33e-15
+   0.150         0.959829         0.959829       1.89e-15
+   0.200         0.899855         0.899855       4.00e-15
+
+(Two independent derivations of Z_H(u)^-1 -- Ihara's spectral form via the
+non-backtracking matrix B, and Bass's n x n determinant formula -- agree to
+numerical precision. This is a genuine correctness check on the
+implementation, not just two ways of printing the same number.)
+
+   k            Tr(B^k)  brute-force NBT walks
+   1             0.0000                      0
+   2             0.0000                      0
+   3            30.0000                     30
+   4            48.0000                     48
+   5            40.0000                     40
+
+(Tr(B^k) counts closed non-backtracking arc-walks of length k; matching
+the direct combinatorial DFS count independently verifies the operator is
+built correctly -- this is the quantity whose generating function IS
+log Z_H(u)^-1 = -sum_k Tr(B^k) u^k / k.)
+
+---- Step 3: Continuum-limit diagnostics (expander analogue) ----
+
+NOTE: proving H_N -> a specific smooth hyperbolic manifold with a matching
+classical Selberg zeta function is an open research problem, not something
+to fake a number for. What follows is the strongest thing that IS honestly
+computable: convergence of random regular graphs to the Kesten-McKay law
+(the discrete analogue of the semicircle law) as N -> infinity, plus a
+Ramanujan/Alon-Boppana spectral-gap diagnostic of 'how expander-like' (i.e.
+how close to the idealized trace-formula regime) each graph is.
+
+N=   50  RMS(empirical - KestenMcKay)=0.02952  |  Ramanujan bound 2*sqrt(d-1)=3.464, max non-trivial |lambda|=3.983, fraction within bound=0.9800, connected components=1
+N=  400  RMS(empirical - KestenMcKay)=0.00789  |  Ramanujan bound 2*sqrt(d-1)=3.464, max non-trivial |lambda|=3.996, fraction within bound=0.9975, connected components=1
+N= 2000  RMS(empirical - KestenMcKay)=0.00623  |  Ramanujan bound 2*sqrt(d-1)=3.464, max non-trivial |lambda|=3.998, fraction within bound=0.9995, connected components=1
+
+(Persistent near-d second eigenvalue -- not disconnection (checked above), but
+the honest signature of an unoptimized configuration-model generator: it
+permits multi-edges/self-loops and doesn't reject or rewire, so it isn't
+sampling a *simple* d-regular graph, and generic non-simple pairings aren't
+covered by the Ramanujan/Friedman guarantee at all. Let's fix that directly.)
+
+---- Follow-up: does a genuinely simple-graph sampler close the gap? ----
+
+Same N and d, but `random_simple_regular_graph` now rejects any pairing that
+produces a self-loop or multi-edge and retries, so what gets measured is
+actually a simple d-regular graph -- the object Friedman's theorem is about.
+
+N=   50  RMS(empirical - KestenMcKay)=0.02803  |  Ramanujan bound 2*sqrt(d-1)=3.464, max non-trivial |lambda|=3.359, fraction within bound=1.0000, connected components=1
+N=  400  RMS(empirical - KestenMcKay)=0.00844  |  Ramanujan bound 2*sqrt(d-1)=3.464, max non-trivial |lambda|=3.409, fraction within bound=1.0000, connected components=1
+N= 2000  RMS(empirical - KestenMcKay)=0.00600  |  Ramanujan bound 2*sqrt(d-1)=3.464, max non-trivial |lambda|=3.451, fraction within bound=1.0000, connected components=1
+
+(RMS deviation from Kesten-McKay should shrink as N grows -- that IS a real,
+verifiable N -> infinity spectral convergence statement, just a modest one
+compared to 'converges to a hyperbolic manifold's Selberg zeta function'.
+Compare the 'max non-trivial |lambda|' column against the non-simple run
+above: this is the actual empirical effect of sampling correctly, not an
+assumption -- look at the printed numbers rather than taking the claim on
+faith.)

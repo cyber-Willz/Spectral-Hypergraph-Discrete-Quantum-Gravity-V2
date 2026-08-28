@@ -1,0 +1,6 @@
+    Finished release [optimized] target(s) in 0.04s
+     Running `target/release/schur_scale_probe`
+N=100 m2=400 time=77.97089ms converged=yes trace_diff=1.834e-13
+N=200 m2=800 time=682.748448ms converged=yes trace_diff=1.519e-12
+N=400 m2=1600 time=5.816530886s converged=yes trace_diff=2.152e-12
+N=800 m2=3200 time=72.326214173s converged=yes trace_diff=2.641e-12

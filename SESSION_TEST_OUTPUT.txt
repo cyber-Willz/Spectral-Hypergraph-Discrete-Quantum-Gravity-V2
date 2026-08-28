@@ -1,0 +1,243 @@
+=== cargo test --release (full workspace, spectral_dqg) ===
+    Finished release [optimized] target(s) in 0.04s
+     Running unittests src/lib.rs (target/release/deps/spectral_dqg-eb7656474eac2084)
+
+running 85 tests
+test autodiff::tests::jet2_first_and_second_derivatives_match_finite_differences ... ok
+test autodiff::tests::jet2_hessian_is_exactly_symmetric ... ok
+test bulk_spacing::tests::bass_trivial_eigenvalues_are_excluded_from_bulk_statistics ... ok
+test bulk_spacing::tests::poisson_reference_has_no_repulsion_ginibre_reference_does ... ok
+test bulk_spacing::tests::schur_eigenvalues_satisfy_trace_identity_on_small_matrices ... ok
+test casimir::tests::energy_per_area_matches_standard_closed_form ... ok
+test casimir::tests::force_per_area_scales_as_inverse_fourth_power ... ok
+test casimir::tests::sphere_plate_force_lands_in_mohideen_roy_1998_range ... ok
+test cheeger::tests::cheeger_constant_matches_known_cycle_value ... ok
+test cheeger::tests::cheeger_constant_positive_and_bounded_on_complete_graph ... ok
+test cheeger::tests::cheeger_inequality_holds_on_irregular_bridge_graph ... ok
+test cheeger::tests::disconnected_graph_gives_zero_gap_and_zero_cheeger_constant ... ok
+test geodesics::tests::adaptive_integrator_matches_fixed_step_in_weak_field ... ok
+test geodesics::tests::adaptive_integrator_shrinks_step_near_photon_sphere_and_conserves_norm ... ok
+test geodesics::tests::impossible_tolerance_reports_step_size_collapsed_rather_than_silently_wrong_output ... ok
+test geodesics::tests::light_bending_deflection_is_stable_across_r0_choices ... ok
+test geodesics::tests::light_bending_matches_weak_field_prediction ... ok
+test geodesics::tests::minkowski_geodesic_is_a_straight_line ... ok
+test geodesics::tests::perihelion_precession_converges_to_weak_field_prediction ... ok
+test geodesics::tests::radial_redshift_matches_closed_form_and_conserves_energy ... ok
+test geodesics::tests::schwarzschild_geodesic_conserves_energy_and_angular_momentum ... ok
+test geodesics::tests::schwarzschild_timelike_geodesic_conserves_norm ... ok
+test gis_ellipsoid::tests::discrete_gauss_bonnet_on_icosahedron_gives_4pi ... ok
+test gis_ellipsoid::tests::meridian_and_prime_vertical_radii_match_known_pole_equator_values ... ok
+test gis_ellipsoid::tests::spherical_limit_recovers_constant_curvature_1_over_r2 ... ok
+test gis_ellipsoid::tests::wgs84_curvature_is_positive_and_within_known_range ... ok
+test gis_gnss_relativity::tests::general_relativity_effect_makes_satellite_clock_run_fast ... ok
+test gis_gnss_relativity::tests::net_effect_matches_the_well_known_38_microseconds_per_day ... ok
+test gis_gnss_relativity::tests::special_relativity_effect_makes_satellite_clock_run_slow ... ok
+test gis_spherical_spectrum::tests::eigenvalue_count_matches_l_max_plus_one_squared ... ok
+test gis_spherical_spectrum::tests::heat_trace_at_t_zero_equals_total_multiplicity ... ok
+test gis_spherical_spectrum::tests::spectral_dimension_plateau_is_near_2_for_a_2_manifold ... ok
+test gis_spherical_spectrum::tests::zero_mode_is_present_and_unique_degree_zero_eigenvalue_is_zero ... ok
+test gme_bmv::tests::bose_2017_grb_style_cross_check_matches_sign_and_order_of_magnitude ... ok
+test gme_bmv::tests::cross_term_converges_to_leading_order_as_dx_shrinks ... ok
+test hypergraph_continuum_limit::tests::bootstrap_rate_recovers_known_exponent_on_noiseless_synthetic_data ... ok
+test hypergraph_continuum_limit::tests::bootstrap_rate_widens_with_added_seed_noise ... ok
+test hypergraph_continuum_limit::tests::both_schemes_have_zero_as_smallest_eigenvalue_on_connected_graph ... ok
+test hypergraph_continuum_limit::tests::connectivity_eps_failure_rate_roughly_tracks_its_target_at_small_n ... ok
+test hypergraph_continuum_limit::tests::connectivity_eps_implied_c_shrinks_toward_theoretical_critical_c_as_n_grows ... ok
+test hypergraph_continuum_limit::tests::connectivity_holds_across_a_wide_range_of_n_and_seeds ... ok
+test hypergraph_continuum_limit::tests::eps_ball_hyperedges_have_varying_sizes ... ok
+test hypergraph_continuum_limit::tests::eps_ball_schemes_a_and_b_genuinely_diverge ... ok
+test hypergraph_continuum_limit::tests::fit_power_law_recovers_known_synthetic_exponent ... ok
+test hypergraph_continuum_limit::tests::knn_hypergraph_has_expected_vertex_count_and_hyperedge_sizes ... ok
+test hypergraph_continuum_limit::tests::l1_l2_bands_are_well_separated_at_moderate_resolution ... ok
+test hypergraph_continuum_limit::tests::l1_l2_bands_are_well_separated_on_eps_ball_construction_too ... ok
+test hypergraph_continuum_limit::tests::sample_std_is_zero_for_a_single_point_not_nan ... ok
+test hypergraph_continuum_limit::tests::sphere_sample_points_are_unit_vectors ... ok
+test hypergraph_continuum_limit::tests::theoretical_critical_c_actually_sits_near_the_connectivity_threshold ... ok
+test hypergraph_continuum_limit::tests::zhou_laplacian_is_exactly_half_normalized_graph_laplacian_on_plain_graph ... ok
+test metrics::tests::exact_and_finite_difference_engines_agree_on_schwarzschild ... ok
+test metrics::tests::frw_ricci_scalar_is_spatially_homogeneous ... ok
+test metrics::tests::frw_ricci_scalar_matches_closed_form_matter_dominated ... ok
+test metrics::tests::frw_ricci_scalar_matches_closed_form_via_autodiff ... ok
+test metrics::tests::minkowski_is_flat_via_autodiff ... ok
+test metrics::tests::schwarzschild_is_ricci_flat ... ok
+test metrics::tests::schwarzschild_is_ricci_flat_via_autodiff ... ok
+test metrics::tests::schwarzschild_kretschmann_matches_closed_form ... ok
+test metrics::tests::schwarzschild_kretschmann_matches_closed_form_exactly_via_autodiff ... ok
+test qft_zeta::tests::zeta_2_matches_basel_problem ... ok
+test qft_zeta::tests::zeta_4_matches_pi4_over_90 ... ok
+test qft_zeta::tests::zeta_negative_1_matches_minus_one_twelfth ... ok
+test qft_zeta::tests::zeta_negative_3_matches_one_over_120 ... ok
+test qg_phenomenology::tests::cosmological_kernel_is_monotonic_increasing_in_z ... ok
+test qg_phenomenology::tests::cosmological_kernel_reduces_to_z_for_small_z ... ok
+test qg_phenomenology::tests::grb_090510_naive_bound_is_same_order_of_magnitude_as_published_and_weaker ... ok
+test qg_phenomenology::tests::planck_length_discreteness_is_already_excluded_by_grb_bound ... ok
+test qg_phenomenology::tests::planck_units_match_known_values ... ok
+test regge_eom::tests::schlafli_identity_holds_on_closed_irregular_complex ... ok
+test regge_eom::tests::schlafli_identity_holds_on_regular_4_simplex_boundary ... ok
+test regge_eom::tests::vacuum_hinges_reports_none_on_curved_closed_complex ... ok
+test seeley_dewitt::tests::a1_coefficient_converges_to_euler_characteristic_over_six ... ok
+test seeley_dewitt::tests::leading_term_is_pure_area_independent_of_radius_choice ... ok
+test semiclassical::tests::bekenstein_hawking_entropy_matches_closed_form ... ok
+test semiclassical::tests::hawking_temperature_matches_closed_form ... ok
+test sparse::tests::matvec_matches_dense_laplacian ... ok
+test spectral_trace::tests::gauss_lower_and_radau_upper_bounds_hold_per_probe ... ok
+test spectral_trace::tests::interval_slq_certificate_contains_exact_heat_trace ... ok
+test spectral_trace::tests::interval_slq_certificate_is_not_violated_more_often_than_stated ... ok
+test spectral_trace::tests::lanczos_steps_ge_n_recovers_exact_trace_deterministically ... ok
+test spectral_trace::tests::more_probes_shrink_the_interval_slq_certificate ... ok
+test spectral_trace::tests::slq_matches_exact_heat_trace_on_small_graph ... ok
+test tensor_calculus::tests::constant_metric_has_zero_christoffel ... ok
+test tensor_calculus::tests::minkowski_is_flat ... ok
+
+test result: ok. 85 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 7.73s
+
+     Running unittests src/bin/bulk_spacing_mc.rs (target/release/deps/bulk_spacing_mc-fc4af8bc078d398f)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/bin/certified_interval_flow.rs (target/release/deps/certified_interval_flow-dd03c4c023ee933d)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/bin/gme_bmv_demo.rs (target/release/deps/gme_bmv_demo-518f26176440cf1f)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/bin/gr_demo.rs (target/release/deps/gr_demo-6e0dbf7a7e9ccfd6)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/bin/gr_demo2.rs (target/release/deps/gr_demo2-f650ede5e1c73e5e)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/bin/hypergraph_continuum_demo.rs (target/release/deps/hypergraph_continuum_demo-e1fc5bd10123563a)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/bin/hypergraph_continuum_seed_avg_demo.rs (target/release/deps/hypergraph_continuum_seed_avg_demo-b240209fba665f92)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/bin/large_n_flow.rs (target/release/deps/large_n_flow-6a4c64bfff4a970b)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/bin/qft_demo.rs (target/release/deps/qft_demo-13bf164eeb625a4c)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/bin/qg_phenomenology_demo.rs (target/release/deps/qg_phenomenology_demo-06429e02ca1ac742)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/bin/regge_demo.rs (target/release/deps/regge_demo-c480a35987d06321)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/bin/schur_scale_probe.rs (target/release/deps/schur_scale_probe-0f8571e11a6014eb)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/main.rs (target/release/deps/spectral_dqg-d101792f2725b9bd)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/bin/verify_circle.rs (target/release/deps/verify_circle-0d1421d532103a6c)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/cross_checks.rs (target/release/deps/cross_checks-f4a314db51dfd22c)
+
+running 7 tests
+test heat_trace_at_t_zero_equals_vertex_count ... ok
+test heat_trace_is_monotonically_decreasing_in_t ... ok
+test ihara_and_bass_formulas_agree ... ok
+test laplacian_smallest_eigenvalue_is_zero_and_nonnegative_spectrum ... ok
+test no_closed_nbt_walks_of_length_one_or_two ... ok
+test simple_regular_sampler_is_actually_simple_and_d_regular ... ok
+test trace_bk_matches_bruteforce_closed_walk_count ... ok
+
+test result: ok. 7 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/regge_tests.rs (target/release/deps/regge_tests-419baa9c4090ef5e)
+
+running 10 tests
+test deficit_angle_plumbing_runs_on_a_small_fan ... ok
+test flat_cube_five_tets_boundary_hinges_read_pi_not_zero ... ok
+test flat_cube_is_flat_under_two_independent_triangulations_of_different_interior_hinges ... ok
+test flat_cube_six_tets_has_zero_deficit_and_zero_action ... ok
+test mc_result_diagnostics_are_populated_and_finite ... ok
+test path_integral_thermalizes_with_sane_acceptance_rate ... ok
+test perturbing_the_cube_produces_nonzero_curvature ... ok
+test regular_tetrahedron_dihedral_angle_matches_closed_form ... ok
+test stronger_coupling_reveals_the_unbounded_below_conformal_mode_pathology ... ok
+test volume_penalty_blocks_global_rescale_but_not_ordinary_shape_moves ... ok
+
+test result: ok. 10 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.24s
+
+   Doc-tests spectral_dqg
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+=== krylov_ds cargo test --release (sub-crate, unchanged) ===
+    Finished release [optimized] target(s) in 0.03s
+     Running unittests src/lib.rs (target/release/deps/krylov_ds-624f0ef07ee5be7a)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/integration_test.rs (target/release/deps/integration_test-8b68455cce765adc)
+
+running 9 tests
+test arnoldi_full_dimension_matches_direct_eigenvalues_diagonal ... ok
+test arnoldi_matches_dense_eigenvalues_on_random_nonsymmetric_matrix ... ok
+test csr_matrix_matches_dense_equivalent ... ok
+test dimension_mismatch_is_rejected ... ok
+test full_reorthogonalization_prevents_ghost_eigenvalues ... ok
+test happy_breakdown_on_invariant_subspace ... ok
+test lanczos_matches_dense_symmetric_eigenvalues ... ok
+test lanczos_partial_run_gives_extremal_ritz_convergence ... ok
+test subspace_too_large_is_rejected ... ok
+
+test result: ok. 9 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests krylov_ds
+
+running 1 test
+test src/lib.rs - (line 15) ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 8.38s
+

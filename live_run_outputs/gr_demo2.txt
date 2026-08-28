@@ -1,0 +1,50 @@
+    Finished release [optimized] target(s) in 0.04s
+     Running `target/release/gr_demo2`
+================================================================
+ GR demo 2: precession, redshift, black-hole thermodynamics
+================================================================
+
+---- Step 1: Perihelion precession -- converges to 3*pi*r_s/p as p/r_s -> infinity ----
+
+3*pi*r_s/p is only the LEADING weak-field term, so a single data point
+will legitimately disagree by several percent at moderate field strength.
+The real check is that the residual shrinks proportionally to r_s/p as the
+orbit widens -- the signature of a correctly-implemented higher-order term,
+not a bug.
+
+ r_min/r_s        p/r_s         measured    predicted(LO)    rel err    err / (M/p)
+        20        26.67         0.386600         0.353429      9.39%          5.006
+        40        53.33         0.184590         0.176715      4.46%          4.754
+        80       106.67         0.090278         0.088357      2.17%          4.638
+       160       213.33         0.044653         0.044179      1.07%          4.582
+       320       426.67         0.022207         0.022089      0.53%          4.555
+
+---- Step 2: Gravitational redshift -- integrated photon geodesic vs closed form ----
+
+conserved photon energy E=f(r)u^t: fractional drift over the whole path = 3.129e-11 (expect ~0)
+redshift ratio nu_obs/nu_emit at r=50.000: measured (from geodesic) = 0.903508, closed form sqrt(f(r_emit)/f(r_obs)) = 0.903508
+
+---- Step 3: Hawking temperature (surface gravity read from the metric) ----
+
+Note: this is a semiclassical (QFT-on-curved-background) result, not pure
+GR -- this crate has no quantum sector, so what's checked is that the
+metric's horizon-adjacent derivative structure feeds the formula correctly.
+
+     r_s      T_H numeric        T_H exact    rel err
+     0.5         0.159155         0.159155    0.0000%
+     1.0         0.079577         0.079577    0.0000%
+     2.0         0.039789         0.039789    0.0000%
+     5.0         0.015915         0.015915    0.0000%
+
+---- Step 4: Bekenstein-Hawking entropy (horizon area from the metric) ----
+
+     r_s        S numeric          S exact    rel err
+     0.5         0.785400         0.785398    0.0003%
+     1.0         3.141601         3.141593    0.0003%
+     2.0        12.566403        12.566371    0.0003%
+     5.0        78.540018        78.539816    0.0003%
+
+================================================================
+ Done. Full pass/fail assertions live in geodesics.rs and
+ semiclassical.rs unit tests (`cargo test --lib`).
+================================================================

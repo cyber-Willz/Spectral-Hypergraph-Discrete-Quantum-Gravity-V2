@@ -1,0 +1,54 @@
+    Finished release [optimized] target(s) in 0.04s
+     Running `target/release/qft_demo`
+================================================================
+ QFT tests: zeta regularization, Casimir effect, Seeley-DeWitt
+================================================================
+
+---- Step 1: Riemann zeta, computed (not hardcoded), positive and continued ----
+
+zeta(2)  = 1.6449340693   exact pi^2/6  = 1.6449340668
+zeta(4)  = 1.0823232337   exact pi^4/90 = 1.0823232337
+zeta(-1) = -0.0833333335   exact -1/12   = -0.0833333333
+zeta(-3) = 0.0083333333   exact 1/120   = 0.0083333333
+
+---- Step 2: Casimir effect, derived from zeta(-3), not the closed form ----
+
+E/A at a=1um: derived from zeta(-3) = -4.333753e-10 J/m^2
+              standard closed form  = -4.333753e-10 J/m^2
+
+---- Step 3: cross-check against Mohideen & Roy 1998 (PRL 81, 4549) ----
+
+AFM measurement: gold-coated sphere (diameter 196um, r=98um) vs flat plate,
+separations 0.1-0.9um, forces of order 1-300pN, RMS deviation from full
+theory (finite conductivity + roughness + thermal) of 1.6pN. This is the
+T=0/perfect-conductor idealization only -- expected to run somewhat HIGH
+of the real measurement at the smallest separations.
+
+    a (nm)     F_ideal (pN)
+       100          266.852
+       200           33.356
+       300            9.883
+       500            2.135
+       900            0.366
+
+---- Step 4: Seeley-DeWitt a_1 coefficient, via the crate's OWN heat_kernel ----
+
+Tr(e^-tD) ~ Area/(4*pi*t) + chi/6 + O(t) on the round sphere (chi=2).
+This reuses heat_kernel::heat_trace() -- the same function already used
+elsewhere in this crate for spectral-dimension flow -- on the sphere's
+exact Laplacian spectrum.
+
+         t       residual
+    0.0500     0.33669882   (expect -> chi/6 = 0.33333333)
+    0.0200     0.33467177   (expect -> chi/6 = 0.33333333)
+    0.0100     0.33400127   (expect -> chi/6 = 0.33333333)
+    0.0050     0.33366698   (expect -> chi/6 = 0.33333333)
+    0.0020     0.33346672   (expect -> chi/6 = 0.33333333)
+    0.0010     0.33340001   (expect -> chi/6 = 0.33333333)
+
+================================================================
+ What this doesn't do: finite-conductivity/roughness/thermal
+ Casimir corrections, and Seeley-DeWitt on an arbitrary
+ spectral_dqg metric (only the sphere's known closed-form
+ spectrum is used here). Both are real next steps.
+================================================================

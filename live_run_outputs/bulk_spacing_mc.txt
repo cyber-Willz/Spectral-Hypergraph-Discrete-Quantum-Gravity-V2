@@ -1,0 +1,28 @@
+    Finished release [optimized] target(s) in 0.04s
+     Running `target/release/bulk_spacing_mc`
+N=120 vertices, d=4 -> B is 480x480. Running 1000 seeds...
+  ...100/1000 seeds done, 14.137742841s elapsed
+  ...200/1000 seeds done, 28.299688892s elapsed
+  ...300/1000 seeds done, 42.584738916s elapsed
+  ...400/1000 seeds done, 56.508745114s elapsed
+  ...500/1000 seeds done, 70.242998765s elapsed
+  ...600/1000 seeds done, 84.041610561s elapsed
+  ...700/1000 seeds done, 97.938558601s elapsed
+  ...800/1000 seeds done, 111.886001321s elapsed
+  ...900/1000 seeds done, 125.729326016s elapsed
+  ...1000/1000 seeds done, 139.833952451s elapsed
+B ensemble: 1000 converged, 0 failed to converge, 180241 pooled spacings, wall time 139.83397784s
+Ginibre reference: 72087 pooled spacings, wall time 78.112673645s
+Poisson reference: 72000 pooled spacings, wall time 1.770336247s
+
+=== Results ===
+fraction of unfolded spacings < 0.3 (small-spacing / repulsion proxy):
+  B (non-backtracking):  0.5232
+  Ginibre reference:     0.0578
+  Poisson reference:     0.2201
+
+KS distance, B vs Ginibre reference:   0.6089
+KS distance, B vs Poisson reference:    0.3968
+KS distance, Ginibre vs Poisson (sanity, should be large): 0.2136
+
+=> B's bulk spacing distribution sits closer to Poisson than Ginibre at this N -- report this as the actual finding, not the expected one.

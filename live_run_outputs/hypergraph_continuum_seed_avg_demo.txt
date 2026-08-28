@@ -1,0 +1,30 @@
+    Finished release [optimized] target(s) in 0.04s
+     Running `target/release/hypergraph_continuum_seed_avg_demo`
+================================================================
+ Hypergraph discrete-to-continuum limit: seed-averaged rates
+ Target: S^2, exact continuum ratio lambda(l=2)/lambda(l=1) = 3
+================================================================
+
+eps_c = 2.5, 8 seeds per N: [1000, 1001, 1002, 1003, 1004, 1005, 1006, 1007]
+
+     N    meanErrA     stdErrA    meanErrB     stdErrB
+   100    0.851239    0.942287    0.886849    0.962836  (n_a=8, n_b=8)
+   200    0.408759    0.322745    0.424942    0.339434  (n_a=8, n_b=8)
+   400    0.087936    0.077082    0.079985    0.077763  (n_a=8, n_b=8)
+   800    0.120004    0.101489    0.121863    0.102163  (n_a=8, n_b=8)
+  1600    0.089159    0.038994    0.089114    0.040356  (n_a=8, n_b=8)
+
+Bootstrap (2000 resamples over the 8 seeds at each N):
+  Scheme A (clique):  p = 0.8074 +/- 0.1369   (5th-95th pct: 0.5741 - 1.0227)
+  Scheme B (Zhou):    p = 0.8339 +/- 0.1319   (5th-95th pct: 0.6098 - 1.0415)
+
+90% bootstrap intervals for the two schemes' rates OVERLAP -- not distinguishable at this seed count.
+
+Single-seed N=3200 spot check (not part of the rate fit above,
+dense eigendecomposition cost there is ~70s/seed -- see module scope note):
+  ratio_A=2.935033 (err=0.064967), ratio_B=2.933787 (err=0.066213)
+
+Caveat carried over honestly: this bootstrap resamples *within* the
+8 already-drawn seeds per N, so it quantifies sensitivity to which
+of those 8 seeds got averaged, not the sensitivity to genuinely new
+sphere samples beyond them (see bootstrap_rate's doc comment).

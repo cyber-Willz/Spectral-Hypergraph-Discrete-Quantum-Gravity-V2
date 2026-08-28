@@ -1,0 +1,46 @@
+    Finished release [optimized] target(s) in 0.04s
+     Running `target/release/regge_demo`
+================================================================
+ Regge calculus: action, path integral, triangulation-independence
+================================================================
+
+---- Step 1: single regular tetrahedron, closed-form check ----
+
+edge length 2.3: computed volume = 1.433895, closed-form l^3/(6*sqrt(2)) = 1.433895, |diff| = 2.22e-16
+
+---- Step 2: flat cube, 6-tet decomposition (diagonal 0-7) ----
+
+hinge (0,7): multiplicity=6, deficit angle=2.665e-15 rad (expect 0 exactly for flat space)
+total Regge action S = 4.615e-15 (expect 0)
+
+---- Step 3: SAME flat cube, independent decomposition (diagonal 1-6) ----
+
+hinge (1,6): multiplicity=6, deficit angle=2.665e-15 rad
+total Regge action S = 4.615e-15
+
+(Two totally different simplicial complexes describing the SAME flat cube
+agree to 0.0e0 -- the honest, narrowly-scoped discrete residue of
+diffeomorphism invariance: physics of a flat region doesn't depend on
+which triangulation describes it. This is NOT full continuum
+diffeomorphism invariance for curved configurations, which Regge
+calculus is known to only approximately recover in the continuum limit.)
+
+---- Step 4: perturb the hinge -> curvature appears ----
+
+stretch main diagonal by 15%: deficit angle = -2.17856 rad, S = -4.33938
+
+---- Step 5: Euclidean path integral, Metropolis over edge lengths ----
+
+Z = integral D[length] exp(-kappa * S_Regge[length]), fixed connectivity (complex_a)
+
+  kappa   <S> (signed)         stderr    accept%        n
+   0.20       -4.88055        0.09197      95.2%      800
+   1.00      -11.70282        0.10079      77.1%      800
+   5.00      -20.68671        0.07628      11.5%      800
+
+(<S> runs MORE negative as kappa grows, not toward 0 -- this is the
+discrete conformal-factor problem (Gibbons-Hawking-Perry 1978): the
+Euclidean curvature term sum(L*deficit) is unbounded below, so naive
+real-weight exp(-kappa*S) sampling is pulled toward large negative-
+curvature configurations, capped only by the hard tetrahedron-
+validity constraint -- reproduced correctly here, not papered over.)
