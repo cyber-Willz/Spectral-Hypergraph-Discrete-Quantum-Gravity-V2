@@ -4,6 +4,8 @@ A Rust implementation of the computable core of the write-up's pipeline:
 **hypergraph → discrete Laplacian → Ihara-Selberg zeta function → (honest)
 continuum-limit diagnostics.**
 
+The system can probably be used to Benchmark & Design Quantum Hardware
+
 ## Test structure
 
 Everything in this crate falls into one of two roles, and they should not
